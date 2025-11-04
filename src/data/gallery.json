@@ -1,12 +1,7 @@
 [
-  { "src": "/gallery/sample-1.jpg", "alt": "Sample image 1" },
-  { "src": "/gallery/sample-2.jpg", "alt": "Sample image 2" },
-  { "src": "/gallery/sample-3.jpg", "alt": "Sample image 3" },
-  { "src": "/gallery/sample-4.jpg", "alt": "Sample image 4" },
-  { "src": "/gallery/sample-5.jpg", "alt": "Sample image 5" },
-  { "src": "/gallery/sample-6.jpg", "alt": "Sample image 6" },
-  { "src": "/gallery/sample-7.jpg", "alt": "Sample image 7" },
-  { "src": "/gallery/sample-8.jpg", "alt": "Sample image 8" }
+  { "src": "/gallery/20220614-161904.jpg", "alt": "Photo 2022-06-14 16:19:04" },
+  { "src": "/gallery/img-20200501-001044.jpg", "alt": "Photo 2020-05-01 00:10:44" },
+  { "src": "/gallery/img-20220913-191608.jpg", "alt": "Photo 2022-09-13 19:16:08" }
 ]
 
 
