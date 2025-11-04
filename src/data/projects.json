@@ -1,0 +1,20 @@
+[
+  {
+    "id": "proj-1",
+    "title": "Interactive Data Viz",
+    "tagline": "Astro + React + D3 prototype",
+    "description": "An elegant visualization exploring data through interactive charts.",
+    "image": "/gallery/sample-1.jpg",
+    "links": { "demo": "#", "repo": "#" }
+  },
+  {
+    "id": "proj-2",
+    "title": "Generative Art",
+    "tagline": "Shaders and patterns",
+    "description": "A collection of generative artworks rendered in the browser.",
+    "image": "/gallery/sample-2.jpg",
+    "links": { "demo": "#", "repo": "#" }
+  }
+]
+
+

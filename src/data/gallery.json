@@ -1,0 +1,12 @@
+[
+  { "src": "/gallery/sample-1.jpg", "alt": "Sample image 1" },
+  { "src": "/gallery/sample-2.jpg", "alt": "Sample image 2" },
+  { "src": "/gallery/sample-3.jpg", "alt": "Sample image 3" },
+  { "src": "/gallery/sample-4.jpg", "alt": "Sample image 4" },
+  { "src": "/gallery/sample-5.jpg", "alt": "Sample image 5" },
+  { "src": "/gallery/sample-6.jpg", "alt": "Sample image 6" },
+  { "src": "/gallery/sample-7.jpg", "alt": "Sample image 7" },
+  { "src": "/gallery/sample-8.jpg", "alt": "Sample image 8" }
+]
+
+
