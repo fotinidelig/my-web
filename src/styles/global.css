@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  /* Gradient reserved for future decorative elements */
+  --bg-gradient: linear-gradient(
+    to right top,
+    #c55d81,
+    #ca6a5f,
+    #bc7f49,
+    #a09449,
+    #7da562,
+    #7caa6b,
+    #7ab074,
+    #79b57e,
+    #9ab36f,
+    #b9af6a,
+    #d4aa6e,
+    #eaa57d
+  );
+}
+
+/* Improve focus styles */
+:focus-visible {
+  outline: 2px solid theme('colors.accent.teal');
+  outline-offset: 2px;
+}
+
+
