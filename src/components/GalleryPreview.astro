@@ -1,0 +1,19 @@
+---
+import gallery from "../data/gallery.json";
+---
+
+<section id="gallery" class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
+  <div class="flex items-baseline justify-between mb-6">
+    <h2 class="text-2xl font-semibold">Gallery</h2>
+    <a href="/gallery" class="text-sm underline hover:text-accent.teal">View all</a>
+  </div>
+  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+    {gallery.slice(0, 8).map((item) => (
+      <a href="/gallery" class="aspect-square rounded-md overflow-hidden bg-gray-200 dark:bg-gray-800">
+        <img src={item.src} alt={item.alt} class="w-full h-full object-cover" loading="lazy" />
+      </a>
+    ))}
+  </div>
+</section>
+
+
