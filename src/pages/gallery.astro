@@ -8,7 +8,7 @@ import gallery from "../data/gallery.json";
     <h1 class="text-3xl font-bold mb-6 text-accent-teal dark:text-white">Gallery</h1>
     <div class="mx-auto max-w-6xl grid gap-4 justify-center justify-items-center grid-cols-[repeat(auto-fit,minmax(180px,1fr))]">
       {gallery.map((item) => (
-        <figure class="rounded-md overflow-hidden bg-gray-200 dark:bg-gray-800">
+        <figure class="rounded-xl overflow-hidden bg-gray-200 dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300">
           <img src={item.src} alt={item.alt} class="w-full h-full object-cover aspect-square" loading="lazy" />
         </figure>
       ))}

@@ -2,12 +2,13 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
-import GalleryPreview from "../components/GalleryPreview.astro";
+import GalleryPreview from "../components/GalleryPreview";
 import Contact from "../components/Contact.astro";
 import ProjectsGrid from "../components/ProjectsGrid";
 import SkillsBubbles from "../components/SkillsBubbles";
 import projects from "../data/projects.json";
 import skills from "../data/skills.json";
+import gallery from "../data/gallery.json";
 ---
 
 <BaseLayout>
@@ -21,7 +22,7 @@ import skills from "../data/skills.json";
     <h2 class="text-2xl font-semibold mb-6 text-accent-teal dark:text-white">Skills</h2>
     <SkillsBubbles client:load skills={skills} />
   </section>
-  <GalleryPreview />
+  <GalleryPreview client:load items={gallery} />
   <Contact />
 </BaseLayout>
 

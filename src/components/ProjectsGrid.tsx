@@ -46,7 +46,7 @@ export default function ProjectsGrid({ projects }: Props) {
         return (
           <article
             key={p.id}
-            className="w-[260px] flex flex-col rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden bg-white dark:bg-gray-900/60"
+            className="w-[260px] flex flex-col rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden bg-white dark:bg-gray-900/60 shadow-md hover:shadow-lg dark:hover:shadow-lg hover:scale-[1.02] transition-all duration-300 cursor-pointer"
           >
             <button
               className="w-full text-left flex flex-col"
@@ -85,7 +85,7 @@ export default function ProjectsGrid({ projects }: Props) {
               <button
                 ref={closeButtonRef}
                 onClick={closeModal}
-                className="px-2.5 py-1.5 rounded-md text-sm border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-white/10 hover:bg-white/90 dark:hover:bg-white/15"
+                className="px-2.5 py-1.5 rounded-md text-sm border border-gray-300 dark:border-gray-600 bg-white/70 dark:bg-white/10 hover:bg-white/90 dark:hover:bg-white/15 shadow-md hover:shadow-lg transition-shadow duration-300"
                 aria-label="Close"
               >
                 Close
