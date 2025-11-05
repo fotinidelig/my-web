@@ -141,6 +141,41 @@ body {
   transform: translate(-50%, -50%) scale(1.15);
 }
 
+/* Navbar gradient background */
+.navbar-gradient {
+  background: linear-gradient(to right, 
+    rgba(197, 93, 129, 0.85),
+    rgba(202, 106, 95, 0.85),
+    rgba(188, 127, 73, 0.85),
+    rgba(160, 148, 73, 0.85),
+    rgba(125, 165, 98, 0.85),
+    rgba(124, 170, 107, 0.85),
+    rgba(122, 176, 116, 0.85),
+    rgba(121, 181, 126, 0.85),
+    rgba(154, 179, 111, 0.85),
+    rgba(185, 175, 106, 0.85),
+    rgba(212, 170, 110, 0.85),
+    rgba(234, 165, 125, 0.85)
+  );
+}
+
+.dark .navbar-gradient {
+  background: linear-gradient(to right, 
+    rgba(197, 93, 129, 0.75),
+    rgba(202, 106, 95, 0.75),
+    rgba(188, 127, 73, 0.75),
+    rgba(160, 148, 73, 0.75),
+    rgba(125, 165, 98, 0.75),
+    rgba(124, 170, 107, 0.75),
+    rgba(122, 176, 116, 0.75),
+    rgba(121, 181, 126, 0.75),
+    rgba(154, 179, 111, 0.75),
+    rgba(185, 175, 106, 0.75),
+    rgba(212, 170, 110, 0.75),
+    rgba(234, 165, 125, 0.75)
+  );
+}
+
 
 
 

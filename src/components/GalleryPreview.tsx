@@ -53,7 +53,7 @@ export default function GalleryPreview({ items }: Props) {
       <section id="gallery" className="w-full bg-accent-sand/5 text-center">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-16">
           <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-accent-teal dark:text-white">Gallery</h2>
+          <h2 className="text-3xl font-semibold text-accent-teal dark:text-white">Gallery</h2>
           <a 
             href="/gallery" 
             className="mt-4 inline-block px-5 py-2.5 rounded-lg bg-gradient-to-r from-accent-rose to-accent-teal text-white text-sm font-medium shadow-lg hover:shadow-xl dark:hover:shadow-xl transition-all duration-300 hover:scale-105"
@@ -61,7 +61,7 @@ export default function GalleryPreview({ items }: Props) {
             View all
           </a>
         </div>
-        <div className="mx-auto max-w-6xl grid gap-4 justify-center justify-items-center grid-cols-[repeat(auto-fit,minmax(140px,1fr))]">
+        <div className="mx-auto max-w-6xl grid gap-4 justify-center justify-items-center grid-cols-[repeat(auto-fit,minmax(110px,1fr))]">
           {items.slice(0, 8).map((item, idx) => (
             <button
               key={idx}
