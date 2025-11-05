@@ -50,8 +50,9 @@ export default function GalleryPreview({ items }: Props) {
 
   return (
     <>
-      <section id="gallery" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-16 text-center">
-        <div className="mb-6">
+      <section id="gallery" className="w-full bg-accent-sand/5 text-center">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-16">
+          <div className="mb-6">
           <h2 className="text-2xl font-semibold text-accent-teal dark:text-white">Gallery</h2>
           <a 
             href="/gallery" 
@@ -75,6 +76,7 @@ export default function GalleryPreview({ items }: Props) {
               />
             </button>
           ))}
+        </div>
         </div>
       </section>
 
