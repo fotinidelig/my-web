@@ -28,3 +28,5 @@ npm run dev
 - Tailwind `darkMode: 'class'`.
 - Font: Cabin via Google Fonts.
 
+
+

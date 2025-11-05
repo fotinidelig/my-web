@@ -24,11 +24,13 @@ export default function ThemeToggle() {
     <button
       aria-label="Toggle theme"
       onClick={toggle}
-      className="px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-700 text-sm hover:bg-gray-100 dark:hover:bg-gray-800"
+      className="px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-600 text-sm text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800"
     >
       {isDark ? 'Light' : 'Dark'}
     </button>
   );
 }
+
+
 
 

@@ -1,5 +1,29 @@
 [
   {
+    "id": "proj-foolproofcnn",
+    "title": "foolproofCNN",
+    "tagline": "Adversarial Examples in CNNs (PyTorch)",
+    "description": "Explores adversarial attacks and defenses on CNNs; includes training, attacks (CW/FGSM/PGD), TRADES.",
+    "image": "https://opengraph.githubassets.com/1/fotinidelig/foolproofCNN",
+    "links": { "demo": "https://github.com/fotinidelig/foolproofCNN", "repo": "https://github.com/fotinidelig/foolproofCNN" }
+  },
+  {
+    "id": "proj-kalman",
+    "title": "kalman_filter_pkg",
+    "tagline": "Kalman Filter in ROS (C++)",
+    "description": "ROS package implementing a Kalman filter; C++ with CMake, designed for robotics pipelines.",
+    "image": "https://opengraph.githubassets.com/1/fotinidelig/kalman_filter_pkg",
+    "links": { "demo": "https://github.com/fotinidelig/kalman_filter_pkg", "repo": "https://github.com/fotinidelig/kalman_filter_pkg" }
+  },
+  {
+    "id": "proj-graph-gallery",
+    "title": "graph-gallery",
+    "tagline": "Graph visualizations & examples",
+    "description": "A collection of graph/visualization experiments and examples.",
+    "image": "https://opengraph.githubassets.com/1/fotinidelig/graph-gallery",
+    "links": { "demo": "https://github.com/fotinidelig/graph-gallery", "repo": "https://github.com/fotinidelig/graph-gallery" }
+  },
+  {
     "id": "proj-1",
     "title": "Interactive Data Viz",
     "tagline": "Astro + React + D3 prototype",
@@ -14,7 +38,17 @@
     "description": "A collection of generative artworks rendered in the browser.",
     "image": "/gallery/sample-2.jpg",
     "links": { "demo": "#", "repo": "#" }
+  },
+  {
+    "id": "proj-3",
+    "title": "UX Prototype",
+    "tagline": "Microinteractions & motion",
+    "description": "A clean prototype focused on elegant transitions and usability.",
+    "image": "/gallery/20220614-161904.jpg",
+    "links": { "demo": "#", "repo": "#" }
   }
 ]
+
+
 
 

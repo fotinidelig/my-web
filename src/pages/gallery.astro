@@ -4,9 +4,9 @@ import gallery from "../data/gallery.json";
 ---
 
 <BaseLayout>
-  <section class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-16">
-    <h1 class="text-3xl font-bold mb-6">Gallery</h1>
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+  <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-16 bg-accent-sand/5 dark:bg-accent-sand/10 text-center">
+    <h1 class="text-3xl font-bold mb-6 text-accent-teal dark:text-white">Gallery</h1>
+    <div class="mx-auto max-w-6xl grid gap-4 justify-center justify-items-center grid-cols-[repeat(auto-fit,minmax(180px,1fr))]">
       {gallery.map((item) => (
         <figure class="rounded-md overflow-hidden bg-gray-200 dark:bg-gray-800">
           <img src={item.src} alt={item.alt} class="w-full h-full object-cover aspect-square" loading="lazy" />
@@ -15,5 +15,7 @@ import gallery from "../data/gallery.json";
     </div>
   </section>
 </BaseLayout>
+
+
 
 

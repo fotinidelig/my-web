@@ -1,0 +1,74 @@
+---
+alwaysApply: true
+---
+
+## General Coding Rules
+1. **Clarity First:**  
+   - Code must be readable, well-structured, and logically modular.  
+   - Keep functions small and focused on a single responsibility.  
+
+2. **Comments and Documentation:**  
+   - Each major function or component should include a concise docstring or comment describing its purpose, arguments, and output.  
+   - Important logic sections or design decisions should have short inline comments.  
+
+3. **Naming Conventions:**  
+   - Use clear, descriptive names for files, components, and variables (e.g. `ProjectCard.tsx`, `skillsData.json`).  
+   - Follow standard JavaScript/TypeScript casing (camelCase for variables, PascalCase for components).  
+
+4. **Minimal and Safe Changes:**  
+   - Avoid large, multi-feature code edits.  
+   - Implement features incrementally with focused commits.  
+   - For any complex or destructive refactoring, **pause and ask for confirmation first.**
+
+## Version Control (Git)
+1. **Versioning:**  
+   - Initialize a Git repository and commit the base setup immediately after project scaffolding.  
+   - Commit frequently — ideally after each functional or stylistic improvement.
+
+2. **Commit Messages:**  
+   - Use precise, descriptive messages.  
+   - Format: `type(scope): short summary`  
+     - Examples:  
+       - `feat(projects): add responsive grid layout`  
+       - `fix(navbar): correct scroll behavior`  
+       - `style(footer): adjust typography spacing`  
+
+3. **Milestone Confirmation:**  
+   - Before any major milestone (e.g., new section added, layout restructured, styling overhaul), Cursor must confirm whether to:  
+     - Commit and push  
+     - Tag a version (e.g., `v0.1`, `v0.2`) 
+
+## Code Quality & Formatting
+1. Use **Prettier** or a similar formatter for consistent style.  
+2. Follow **Tailwind CSS** best practices for responsive design.  
+3. Validate code with **Astro and React linting tools** before commit.  
+4. Cursor should **automatically check for syntax or structural errors** before pushing.
+
+## Collaboration Behavior for Cursor
+- Always **summarize planned actions** before executing them (especially for structural changes).  
+- Ask before installing new dependencies or modifying existing configurations.  
+- Maintain a clear change log in `CHANGELOG.md` when version milestones are reached.  
+- Confirm before overwriting or deleting files.
+
+## Security and Safety Rules
+1. **Avoid Unsafe Practices:**  
+   - Do not expose API keys, environment variables, or personal information.  
+   - Never hardcode sensitive data (emails, tokens, etc.) — use environment configuration if needed.  
+   - Sanitize any input or URL parameters (even if user input is minimal).  
+
+2. **Dependencies:**  
+   - Use well-maintained, trusted dependencies only.  
+   - Avoid adding third-party packages without prior confirmation.  
+
+3. **Browser Safety:**  
+   - Prevent inline script injection (no `dangerouslySetInnerHTML` unless absolutely necessary).  
+   - Avoid insecure or deprecated APIs.  
+
+4. **Accessibility:**  
+   - Maintain semantic HTML for screen readers.  
+   - Use appropriate ARIA roles where needed.
+
+## Testing
+
+**Testing every major change**
+- Make sure to allow for the correct testing of the functions and features implemented in a CI/CD style.
