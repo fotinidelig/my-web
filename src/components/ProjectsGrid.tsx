@@ -46,19 +46,19 @@ export default function ProjectsGrid({ projects }: Props) {
         return (
           <article
             key={p.id}
-            className="w-[260px] h-[400px] flex flex-col rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden bg-white dark:bg-gray-900/60"
+            className="w-[260px] flex flex-col rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden bg-white dark:bg-gray-900/60"
           >
             <button
-              className="w-full text-left flex-1 flex flex-col"
+              className="w-full text-left flex flex-col"
               aria-haspopup="dialog"
               onClick={() => openModal(p)}
             >
               <div className="w-full h-40 md:h-44 overflow-hidden">
                 <img src={p.image} alt={p.title} className="w-full h-full object-cover" loading="lazy" />
               </div>
-              <div className="p-4 flex-1">
+              <div className="p-4">
                 <h3 className="font-semibold text-gray-900 dark:text-gray-100">{p.title}</h3>
-                <p className="text-sm opacity-80 text-gray-700 dark:text-gray-200">{p.tagline}</p>
+                <p className="text-sm opacity-80 text-gray-700 dark:text-gray-200 mt-1">{p.tagline}</p>
               </div>
             </button>
           </article>

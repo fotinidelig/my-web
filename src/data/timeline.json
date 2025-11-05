@@ -1,0 +1,27 @@
+[
+  {
+    "id": "max-planck",
+    "title": "Research Internship",
+    "organization": "Max Planck Institute for Empirical Aesthetics",
+    "period": "Summer 2020",
+    "description": "Erasmus research internship at the Max Planck Institute for Empirical Aesthetics.",
+    "iconText": "MPI"
+  },
+  {
+    "id": "ntua",
+    "title": "Electrical and Computer Engineering",
+    "organization": "National Technical University of Athens (NTUA)",
+    "period": "End of 2021",
+    "description": "Completed studies in Electrical and Computer Engineering at NTUA.",
+    "iconText": "NTUA"
+  },
+  {
+    "id": "dlr",
+    "title": "Research Associate",
+    "organization": "German Aerospace Center (DLR)",
+    "period": "2022-2025",
+    "description": "Research associate at the Institute for AI Safety, German Aerospace Center.",
+    "iconText": "DLR"
+  }
+]
+

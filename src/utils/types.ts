@@ -19,6 +19,16 @@ export type GalleryItem = {
   alt: string;
 };
 
+export type TimelineItem = {
+  id: string;
+  title: string;
+  organization: string;
+  period: string;
+  description: string;
+  icon?: string; // logo/image URL
+  iconText?: string; // fallback text/initials
+};
+
 
 
 
