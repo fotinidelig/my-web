@@ -1,7 +1,15 @@
 [
-  { "src": "/gallery/20220614-161904.jpg", "alt": "Photo 2022-06-14 16:19:04" },
-  { "src": "/gallery/img-20200501-001044.jpg", "alt": "Photo 2020-05-01 00:10:44" },
-  { "src": "/gallery/img-20220913-191608.jpg", "alt": "Photo 2022-09-13 19:16:08" }
+  { "src": "/gallery/gallery-2020-04-09.jpg", "alt": "Photo April 2020" },
+  { "src": "/gallery/gallery-2020-05-01.jpg", "alt": "Photo May 2020" },
+  { "src": "/gallery/gallery-2021-05-22.jpg", "alt": "Photo May 2021" },
+  { "src": "/gallery/gallery-2022-02-16.jpg", "alt": "Photo February 2022" },
+  { "src": "/gallery/gallery-2022-06-14.jpg", "alt": "Photo June 2022" },
+  { "src": "/gallery/gallery-2022-09-13.jpg", "alt": "Photo September 2022" },
+  { "src": "/gallery/gallery-2024-10-25.jpg", "alt": "Photo October 2024" },
+  { "src": "/gallery/gallery-2025-07-06.jpg", "alt": "Photo July 2025" },
+  { "src": "/gallery/gallery-2025-07-13.jpg", "alt": "Photo July 2025" },
+  { "src": "/gallery/gallery-2025-07-22.jpg", "alt": "Photo July 2025" },
+  { "src": "/gallery/gallery-2025-09-10-1.jpg", "alt": "Photo September 2025" },
+  { "src": "/gallery/gallery-2025-09-10-2.jpg", "alt": "Photo September 2025" },
+  { "src": "/gallery/gallery-2025-09-12.jpg", "alt": "Photo September 2025" }
 ]
-
-
