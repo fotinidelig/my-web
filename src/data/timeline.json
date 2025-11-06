@@ -1,18 +1,29 @@
 [
   {
+    "id": "robotics-lab",
+    "title": "Robotics Intern",
+    "organization": "Robotics Lab, National Centre for Scientific Research, Athens",
+    "period": "Aug-Oct 2020",
+    "description": "Implemented smoothing filters for hand-movement point cloud data using ROS and OpenPose.",
+    "icon": "/timeline-icons/ncsr.svg",
+    "iconText": "NCSR"
+  },
+  {
     "id": "max-planck",
     "title": "Research Internship",
     "organization": "Max Planck Institute for Empirical Aesthetics",
-    "period": "Summer 2020",
-    "description": "Erasmus research internship at the Max Planck Institute for Empirical Aesthetics.",
+    "period": "Summer 2021",
+    "description": "Erasmus research internship. Developed and analyzed online experiments using Amazon MTurk and R.",
+    "icon": "/timeline-icons/max-planck.svg",
     "iconText": "MPI"
   },
   {
     "id": "ntua",
     "title": "Electrical and Computer Engineering",
     "organization": "National Technical University of Athens (NTUA)",
-    "period": "End of 2021",
+    "period": "2015-2021",
     "description": "Completed studies in Electrical and Computer Engineering at NTUA.",
+    "icon": "/timeline-icons/ntua.svg",
     "iconText": "NTUA"
   },
   {
@@ -20,8 +31,18 @@
     "title": "Research Associate",
     "organization": "German Aerospace Center (DLR)",
     "period": "2022-2025",
-    "description": "Research associate at the Institute for AI Safety, German Aerospace Center.",
+    "description": "Research on AI certification, Human-AI teaming, computer vision, and model robustness. Published papers, supervised theses, led RoX robotics project.",
+    "icon": "/timeline-icons/dlr.svg",
     "iconText": "DLR"
+  },
+  {
+    "id": "carpentries",
+    "title": "Certified Software and Data Instructor",
+    "organization": "The Carpentries",
+    "period": "March 2025",
+    "description": "Certified software instructor on teaching Git, Unix Shell, Python and R.",
+    "icon": "/timeline-icons/carpentries.svg",
+    "iconText": "Carp"
   }
 ]
 

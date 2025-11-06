@@ -6,13 +6,17 @@ type Props = { skills: Skill[] };
 function getCategoryClasses(category?: Skill['category']): string {
   switch (category) {
     case 'programming':
-      return 'bg-accent-teal/40 text-accent-teal dark:bg-accent-teal/35 dark:text-accent-teal';
-    case 'framework':
-      return 'bg-accent-rose/35 text-accent-rose dark:bg-accent-rose/30 dark:text-accent-rose';
-    case 'tool':
-      return 'bg-accent-sand/40 text-accent-sand dark:bg-accent-sand/35 dark:text-accent-sand';
+      return 'bg-accent-teal/40 text-teal-800 dark:bg-accent-teal/35 dark:text-teal-200';
     case 'ai':
       return 'bg-indigo-400/40 text-indigo-700 dark:bg-indigo-400/35 dark:text-indigo-300';
+    case 'cv':
+      return 'bg-green-400/40 text-green-700 dark:bg-green-400/35 dark:text-green-300';
+    case 'tool':
+      return 'bg-accent-sand/40 text-amber-900 dark:bg-accent-sand/35 dark:text-amber-200';
+    case 'web':
+      return 'bg-accent-rose/35 text-accent-rose dark:bg-accent-rose/30 dark:text-accent-rose';
+    case 'robotics':
+      return 'bg-amber-400/40 text-amber-700 dark:bg-amber-400/35 dark:text-amber-300';
     default:
       return 'bg-white/80 dark:bg-gray-800/70 text-gray-800 dark:text-gray-100';
   }
@@ -31,9 +35,46 @@ function getJitter(idx: number): { dx: number; dy: number } {
 
 export default function SkillsBubbles({ skills }: Props) {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<Skill['category'] | null>(null);
+
+  // Get unique categories from skills
+  const categories: Array<{ name: string; category: Skill['category'] }> = [
+    { name: 'Programming', category: 'programming' },
+    { name: 'ML/AI', category: 'ai' },
+    { name: 'Computer Vision', category: 'cv' },
+    { name: 'Tools', category: 'tool' },
+    { name: 'Web', category: 'web' },
+    { name: 'Robotics', category: 'robotics' },
+  ].filter(cat => skills.some(s => s.category === cat.category));
+
+  const handleCategoryClick = (category: Skill['category']) => {
+    if (selectedCategory === category) {
+      setSelectedCategory(null); // Deselect if clicking the same category
+    } else {
+      setSelectedCategory(category);
+    }
+  };
 
   return (
-    <div className="-mt-2 mx-auto max-w-5xl flex flex-wrap justify-center gap-5 md:gap-6">
+    <div className="-mt-2 mx-auto max-w-5xl">
+      {/* Legend */}
+      <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-6">
+        {categories.map((cat) => (
+          <button
+            key={cat.category}
+            onClick={() => handleCategoryClick(cat.category)}
+            className={`inline-flex items-center justify-center rounded-full px-3 py-1.5 text-xs md:text-sm font-medium shadow-md backdrop-blur-sm transition-all duration-200 cursor-pointer hover:scale-105 ${getCategoryClasses(cat.category)} ${
+              selectedCategory === cat.category ? 'ring-2 ring-offset-2 ring-gray-400 dark:ring-gray-500' : ''
+            }`}
+            style={{ minWidth: 'fit-content' }}
+          >
+            {cat.name}
+          </button>
+        ))}
+      </div>
+      
+      {/* Bubbles */}
+      <div className="flex flex-wrap justify-center gap-1 md:gap-2">
       {skills.map((s, idx) => {
         const minSize = 65; // px
         const maxSize = 150; // px
@@ -48,7 +89,7 @@ export default function SkillsBubbles({ skills }: Props) {
         const animDelaySec = (seed * 2); // 0 .. 2s
         const jitter = getJitter(idx);
         // Reserve space for max hover size + jitter range (max jitter is ~20px left/right, ~32px top/bottom)
-        const wrapperSize = hoverSize + 50; // enough for hover + jitter buffer
+        const wrapperSize = hoverSize + 30; // reduced buffer for more compact layout
 
         return (
           <span
@@ -57,7 +98,9 @@ export default function SkillsBubbles({ skills }: Props) {
             style={{ width: wrapperSize, height: wrapperSize }}
           >
             <span
-              className={`absolute inline-flex items-center justify-center rounded-full shadow-xl backdrop-blur-sm animate-float-soft transition-all duration-500 ease-out z-10 hover:z-20 ${getCategoryClasses(s.category)}`}
+              className={`absolute inline-flex items-center justify-center rounded-full shadow-xl backdrop-blur-sm animate-float-soft transition-all duration-500 ease-out z-10 hover:z-20 ${getCategoryClasses(s.category)} ${
+                selectedCategory !== null && selectedCategory !== s.category ? 'grayscale opacity-40' : ''
+              }`}
               style={{
                 width: baseSize,
                 height: baseSize,
@@ -88,6 +131,7 @@ export default function SkillsBubbles({ skills }: Props) {
           </span>
         );
       })}
+      </div>
     </div>
   );
 }

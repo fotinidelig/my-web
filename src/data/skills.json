@@ -1,12 +1,16 @@
 [
-  { "name": "TypeScript", "level": 85, "category": "programming", "years": 4 },
-  { "name": "React", "level": 90, "category": "framework", "years": 5 },
-  { "name": "Astro", "level": 75, "category": "framework", "years": 2 },
-  { "name": "Tailwind CSS", "level": 80, "category": "tool", "years": 3 },
-  { "name": "D3.js", "level": 60, "category": "framework", "years": 2 },
   { "name": "Python", "level": 88, "category": "programming", "years": 6 },
-  { "name": "Deep Learning", "level": 72, "category": "ai", "years": 3 },
-  { "name": "LaTeX", "level": 70, "category": "tool", "years": 5 }
+  { "name": "C++", "level": 75, "category": "programming", "years": 4 },
+  { "name": "PyTorch", "level": 80, "category": "ai", "years": 3 },
+  { "name": "HuggingFace", "level": 70, "category": "ai", "years": 2 },
+  { "name": "Machine/Deep Learning", "level": 75, "category": "ai", "years": 4 },
+  { "name": "OpenCV", "level": 78, "category": "cv", "years": 4 },
+  { "name": "YOLO", "level": 70, "category": "cv", "years": 2 },
+  { "name": "Git", "level": 85, "category": "tool", "years": 6 },
+  { "name": "Docker", "level": 75, "category": "tool", "years": 3 },
+  { "name": "LaTeX", "level": 70, "category": "tool", "years": 5 },
+  { "name": "Flask", "level": 65, "category": "web", "years": 2 },
+  { "name": "ROS", "level": 70, "category": "robotics", "years": 3 }
 ]
 
 
