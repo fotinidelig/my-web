@@ -1,6 +1,7 @@
 [
   { "name": "Python", "level": 88, "category": "programming", "years": 6 },
   { "name": "C++", "level": 75, "category": "programming", "years": 4 },
+  { "name": "Bash/Shell", "level": 70, "category": "programming", "years": 5 },
   { "name": "PyTorch", "level": 80, "category": "ai", "years": 3 },
   { "name": "HuggingFace", "level": 70, "category": "ai", "years": 2 },
   { "name": "Machine/Deep Learning", "level": 75, "category": "ai", "years": 4 },

@@ -22,14 +22,19 @@ function getCategoryClasses(category?: Skill['category']): string {
   }
 }
 
-// Jitter utility: small, deterministic offsets to break straight rows
+// Jitter utility: more random offsets for less structured layout
 function getJitter(idx: number): { dx: number; dy: number } {
   const a = Math.sin(idx * 12.9898) * 43758.5453;
   const b = Math.cos(idx * 78.233) * 9631.517;
+  const c = Math.sin(idx * 45.123) * 78901.234;
+  const d = Math.cos(idx * 123.456) * 34567.890;
   const randA = a - Math.floor(a);
   const randB = b - Math.floor(b);
-  const dx = (randA - 0.5) * 20; // -10px to 10px
-  const dy = (randB - 0.5) * 32; // -16px to 16px
+  const randC = c - Math.floor(c);
+  const randD = d - Math.floor(d);
+  // Reduced range for tighter spacing with some randomness
+  const dx = (randA - 0.5) * 25 + (randC - 0.5) * 10; // -17px to 17px
+  const dy = (randB - 0.5) * 30 + (randD - 0.5) * 15; // -22px to 22px
   return { dx, dy };
 }
 
@@ -46,6 +51,13 @@ export default function SkillsBubbles({ skills }: Props) {
     { name: 'Web', category: 'web' },
     { name: 'Robotics', category: 'robotics' },
   ].filter(cat => skills.some(s => s.category === cat.category));
+
+  // Shuffle skills array deterministically to mix categories
+  const shuffledSkills = [...skills].sort((a, b) => {
+    const hashA = (a.name.charCodeAt(0) + a.name.length) * 17;
+    const hashB = (b.name.charCodeAt(0) + b.name.length) * 23;
+    return (hashA % 100) - (hashB % 100);
+  });
 
   const handleCategoryClick = (category: Skill['category']) => {
     if (selectedCategory === category) {
@@ -75,21 +87,22 @@ export default function SkillsBubbles({ skills }: Props) {
       
       {/* Bubbles */}
       <div className="flex flex-wrap justify-center gap-1 md:gap-2">
-      {skills.map((s, idx) => {
+      {shuffledSkills.map((s, idx) => {
         const minSize = 65; // px
         const maxSize = 150; // px
         const clamped = Math.max(0, Math.min(100, s.level));
         const baseSize = Math.round(minSize + (maxSize - minSize) * (clamped / 100));
         const hoverSize = baseSize * 1.15; // 15% larger on hover
-        const isHovered = hoveredIdx === idx;
+        const originalIdx = skills.findIndex(skill => skill.name === s.name);
+        const isHovered = hoveredIdx === originalIdx;
         const size = isHovered ? hoverSize : baseSize;
-        // Deterministic per-bubble pace
-        const seed = Math.abs(Math.sin((idx + 1) * 0.61803398875));
+        // Deterministic per-bubble pace (use original index for consistency)
+        const seed = Math.abs(Math.sin((originalIdx + 1) * 0.61803398875));
         const animDurationSec = 4 + seed * 5; // 4s .. 9s
         const animDelaySec = (seed * 2); // 0 .. 2s
-        const jitter = getJitter(idx);
-        // Reserve space for max hover size + jitter range (max jitter is ~20px left/right, ~32px top/bottom)
-        const wrapperSize = hoverSize + 30; // reduced buffer for more compact layout
+        const jitter = getJitter(originalIdx);
+        // Reserve space for max hover size + jitter range
+        const wrapperSize = hoverSize + 50; // reduced buffer for tighter layout
 
         return (
           <span
@@ -113,7 +126,7 @@ export default function SkillsBubbles({ skills }: Props) {
                 animationDelay: `${animDelaySec}s`,
                 animationDuration: `${animDurationSec}s`,
               } as React.CSSProperties}
-              onMouseEnter={() => setHoveredIdx(idx)}
+              onMouseEnter={() => setHoveredIdx(originalIdx)}
               onMouseLeave={() => setHoveredIdx(null)}
               aria-label={`${s.name}${s.category ? ` • ${s.category}` : ''}`}
             >
