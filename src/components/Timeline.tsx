@@ -276,10 +276,6 @@ export default function Timeline({ items }: Props) {
 
   return (
     <div className="relative py-12 pb-20">
-      <p className="mx-auto mb-12 max-w-2xl px-4 text-center text-gray-700 dark:text-gray-300">
-        Here are some key milestones in my journey, from academic studies to research positions.
-      </p>
-
       {isMobile ? renderMobile() : renderDesktop()}
     </div>
   );
