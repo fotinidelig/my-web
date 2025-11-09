@@ -31,20 +31,11 @@ html {
   outline-offset: 2px;
 }
 
-/* Base typography adjustments for better readability */
-body {
-  font-size: 18px;
-  line-height: 1.75;
-}
-
-@media (min-width: 768px) {
-  body { font-size: 20px; }
-}
-
 @layer base {
-  body { @apply text-gray-900 dark:text-gray-100; }
-  h1, h2, h3, h4, h5, h6 { @apply text-gray-900 dark:text-gray-100; }
-  p, a, li, small, span { @apply text-gray-800 dark:text-gray-200; }
+  body { @apply text-body text-gray-900 dark:text-gray-100; }
+  h1, h2, h3, h4, h5, h6 { @apply text-title text-gray-900 dark:text-gray-100; }
+  p, a, li, span { @apply text-body text-gray-800 dark:text-gray-200; }
+  small { @apply text-small text-gray-700 dark:text-gray-300; }
 }
 
 /* Floating bubble animation for skills (with subtle X jitter) */
