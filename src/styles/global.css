@@ -31,6 +31,14 @@ html {
   outline-offset: 2px;
 }
 
+details > summary {
+  list-style: none;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+}
+
 @layer base {
   body { @apply text-body text-gray-900 dark:text-gray-100; }
   h1, h2, h3, h4, h5, h6 { @apply text-title text-gray-900 dark:text-gray-100; }

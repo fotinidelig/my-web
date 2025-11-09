@@ -58,7 +58,7 @@ export default function ProjectsGrid({ projects }: Props) {
         return (
           <article
             key={p.id}
-            className="w-[280px] flex flex-col overflow-hidden rounded-2xl border border-gray-200/70 dark:border-gray-800/60 bg-white/80 dark:bg-gray-900/60 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl backdrop-blur-[2px]"
+            className="w-[240px] flex flex-col overflow-hidden rounded-2xl border border-gray-200/70 dark:border-gray-800/60 bg-white/80 dark:bg-gray-900/60 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl backdrop-blur-[2px] sm:w-[260px]"
           >
             <button
               type="button"
@@ -68,12 +68,12 @@ export default function ProjectsGrid({ projects }: Props) {
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-secondary transition-transform duration-700 group-hover:scale-105" />
               <div className="absolute inset-0 bg-black/10 dark:bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative flex h-full flex-col items-center justify-center px-6 py-10 text-center">
-                <div className="rounded-2xl border border-white/30 bg-white/45 px-5 py-4 shadow-lg backdrop-blur-[6px] transition-all duration-500 group-hover:bg-white/60 dark:border-white/15 dark:bg-white/10 dark:group-hover:bg-white/15">
+              <div className="relative flex h-full flex-col items-center justify-center px-5 py-8 text-center">
+                <div className="rounded-2xl border border-white/30 bg-white/45 px-4 py-3.5 shadow-lg backdrop-blur-[6px] transition-all duration-500 group-hover:bg-white/60 dark:border-white/15 dark:bg-white/10 dark:group-hover:bg-white/15">
                   <h3 className="font-semibold text-title text-gray-900 dark:text-gray-100 tracking-tight">
                     {p.title}
                   </h3>
-                  <p className="mt-2 text-small text-gray-700/85 dark:text-gray-200/90">
+                  <p className="mt-1.5 text-small text-gray-700/85 dark:text-gray-200/90">
                     {p.tagline}
                   </p>
                 </div>
@@ -85,7 +85,7 @@ export default function ProjectsGrid({ projects }: Props) {
                 href={p.links.repo}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center gap-2 px-6 py-4 border-t border-gray-200/70 dark:border-gray-800/60 text-secondary hover:text-secondary/90 dark:text-secondary/90 dark:hover:text-secondary focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 transition-colors"
+                className="flex items-center justify-center gap-2 px-5 py-3 border-t border-gray-200/70 dark:border-gray-800/60 text-secondary hover:text-secondary/90 dark:text-secondary/90 dark:hover:text-secondary focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 transition-colors"
                 aria-label={`Open ${p.title} on GitHub`}
               >
                 <svg

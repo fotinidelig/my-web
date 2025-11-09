@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { Skill } from '../utils/types';
 
 type Props = { skills: Skill[] };
@@ -41,15 +41,41 @@ function getJitter(idx: number): { dx: number; dy: number } {
 export default function SkillsBubbles({ skills }: Props) {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<Skill['category'] | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const query = window.matchMedia('(max-width: 767px)');
+    const handleChange = (event: MediaQueryListEvent | MediaQueryList) => {
+      setIsMobile(event.matches);
+    };
+
+    handleChange(query);
+
+    if (typeof query.addEventListener === 'function') {
+      query.addEventListener('change', handleChange as (event: MediaQueryListEvent) => void);
+    } else {
+      query.addListener(handleChange as (event: MediaQueryListEvent) => void);
+    }
+
+    return () => {
+      if (typeof query.removeEventListener === 'function') {
+        query.removeEventListener('change', handleChange as (event: MediaQueryListEvent) => void);
+      } else {
+        query.removeListener(handleChange as (event: MediaQueryListEvent) => void);
+      }
+    };
+  }, []);
 
   // Get unique categories from skills
   const categories: Array<{ name: string; category: Skill['category'] }> = [
-    { name: 'Programming', category: 'programming' },
-    { name: 'ML/AI', category: 'ai' },
-    { name: 'Computer Vision', category: 'cv' },
-    { name: 'Tools', category: 'tool' },
-    { name: 'Web', category: 'web' },
-    { name: 'Robotics', category: 'robotics' },
+    { name: 'Programming', category: 'programming' as Skill['category'] },
+    { name: 'ML/AI', category: 'ai' as Skill['category'] },
+    { name: 'Computer Vision', category: 'cv' as Skill['category'] },
+    { name: 'Tools', category: 'tool' as Skill['category'] },
+    { name: 'Web', category: 'web' as Skill['category'] },
+    { name: 'Robotics', category: 'robotics' as Skill['category'] },
   ].filter(cat => skills.some(s => s.category === cat.category));
 
   // Shuffle skills array deterministically to mix categories
@@ -87,7 +113,7 @@ export default function SkillsBubbles({ skills }: Props) {
       
       {/* Bubbles */}
       <div className="flex flex-wrap justify-center gap-1 md:gap-2">
-      {shuffledSkills.map((s, idx) => {
+      {shuffledSkills.map((s) => {
         const minSize = 65; // px
         const maxSize = 150; // px
         const clamped = Math.max(0, Math.min(100, s.level));
@@ -95,14 +121,24 @@ export default function SkillsBubbles({ skills }: Props) {
         const hoverSize = baseSize * 1.15; // 15% larger on hover
         const originalIdx = skills.findIndex(skill => skill.name === s.name);
         const isHovered = hoveredIdx === originalIdx;
-        const size = isHovered ? hoverSize : baseSize;
-        // Deterministic per-bubble pace (use original index for consistency)
         const seed = Math.abs(Math.sin((originalIdx + 1) * 0.61803398875));
         const animDurationSec = 4 + seed * 5; // 4s .. 9s
         const animDelaySec = (seed * 2); // 0 .. 2s
         const jitter = getJitter(originalIdx);
-        // Reserve space for max hover size + jitter range
         const wrapperSize = hoverSize + 50; // reduced buffer for tighter layout
+        const dimmed = selectedCategory !== null && selectedCategory !== s.category;
+
+        if (isMobile) {
+          return (
+            <span
+              key={s.name}
+              className={`inline-flex items-center justify-center rounded-full px-3.5 py-1.5 text-[0.9rem] font-semibold shadow-lg shadow-secondary/20 backdrop-blur-sm transition-transform duration-500 ${getCategoryClasses(s.category)} ${dimmed ? 'opacity-45 grayscale' : ''}`}
+              style={{ transform: `translateY(${Math.sin((originalIdx + 1) * 1.3) * 4}px)` }}
+            >
+              {s.name}
+            </span>
+          );
+        }
 
         return (
           <span
@@ -112,11 +148,11 @@ export default function SkillsBubbles({ skills }: Props) {
           >
             <span
               className={`absolute inline-flex items-center justify-center rounded-full shadow-xl backdrop-blur-sm animate-float-soft transition-all duration-500 ease-out z-10 hover:z-20 ${getCategoryClasses(s.category)} ${
-                selectedCategory !== null && selectedCategory !== s.category ? 'grayscale opacity-40' : ''
+                dimmed ? 'grayscale opacity-40' : ''
               }`}
               style={{
-                width: baseSize,
-                height: baseSize,
+                width: isHovered ? hoverSize : baseSize,
+                height: isHovered ? hoverSize : baseSize,
                 left: `calc(50% + ${jitter.dx}px)`,
                 top: `calc(50% + ${jitter.dy}px)`,
                 '--scale': isHovered ? 1.15 : 1,
