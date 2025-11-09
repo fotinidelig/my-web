@@ -4,6 +4,7 @@ export type Project = {
   tagline: string;
   description: string;
   image: string;
+  stack?: string[];
   links?: { demo?: string; repo?: string };
 };
 
