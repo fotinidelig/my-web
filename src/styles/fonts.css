@@ -1,0 +1,36 @@
+/* Self-hosted fonts for privacy and performance */
+
+/* Cabin font - weights 400, 600, 700 */
+@font-face {
+  font-family: 'Cabin';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/cabin-400.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Cabin';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/cabin-600.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Cabin';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/cabin-700.ttf') format('truetype');
+}
+
+/* Neonderthaw font - decorative */
+@font-face {
+  font-family: 'Neonderthaw';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/neonderthaw-400.ttf') format('truetype');
+}
+
