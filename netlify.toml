@@ -1,0 +1,102 @@
+# Netlify Configuration for byfotini.com
+# Optimized for free tier (300 build minutes/month)
+
+[build]
+  # Build command - Astro generates static files
+  command = "npm run build"
+  # Output directory - Astro outputs to 'dist' by default
+  publish = "dist"
+  # Node version for consistent builds (saves time by avoiding version detection)
+  # Check your local version with: node --version
+  # Using Node 20 LTS for stability and performance
+  environment = { NODE_VERSION = "20" }
+
+[build.environment]
+  # Disable telemetry to save build time and protect privacy
+  ASTRO_TELEMETRY_DISABLED = "1"
+  # Optimize npm installs
+  NPM_FLAGS = "--prefer-offline --no-audit"
+  # Reduce build verbosity (saves logs, slightly faster)
+  NODE_ENV = "production"
+
+# Security headers for privacy and security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Prevent clickjacking
+    X-Frame-Options = "DENY"
+    # Prevent MIME type sniffing
+    X-Content-Type-Options = "nosniff"
+    # Enable XSS protection
+    X-XSS-Protection = "1; mode=block"
+    # Referrer policy - only send origin (privacy-friendly)
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    # Content Security Policy - strict for security (fonts self-hosted)
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval';
+      style-src 'self' 'unsafe-inline';
+      font-src 'self' data:;
+      img-src 'self' data: https: blob:;
+      connect-src 'self' https://opengraph.githubassets.com;
+      frame-ancestors 'none';
+    """
+    # Permissions Policy - restrict browser features
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    # Strict Transport Security (HSTS) - only if you're using HTTPS (Netlify provides this)
+    # Note: Netlify automatically handles HTTPS, so this is optional but good practice
+
+# Cache static assets for performance (saves bandwidth)
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML files should not be cached (for updates)
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Redirects (if needed)
+# Example: redirect www to non-www (or vice versa)
+# [[redirects]]
+#   from = "https://www.byfotini.com/*"
+#   to = "https://byfotini.com/:splat"
+#   status = 301
+#   force = true
+
+# Plugin configuration (optional - for build optimization)
+# [plugins]
+#   package = "@netlify/plugin-lighthouse"
+
