@@ -6,12 +6,12 @@
   command = "npm run build"
   # Output directory - Astro outputs to 'dist' by default
   publish = "dist"
+
+[build.environment]
   # Node version for consistent builds (saves time by avoiding version detection)
   # Check your local version with: node --version
   # Using Node 20 LTS for stability and performance
-  environment = { NODE_VERSION = "20" }
-
-[build.environment]
+  NODE_VERSION = "20"
   # Disable telemetry to save build time and protect privacy
   ASTRO_TELEMETRY_DISABLED = "1"
   # Optimize npm installs
