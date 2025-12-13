@@ -4,6 +4,7 @@ export type Project = {
   tagline: string;
   description: string;
   image: string;
+  previewImage?: string; // Optional preview image for card background
   stack?: string[];
   links?: { demo?: string; repo?: string };
 };

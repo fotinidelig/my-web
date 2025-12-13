@@ -62,18 +62,40 @@ export default function ProjectsGrid({ projects }: Props) {
           >
             <button
               type="button"
-              className="group relative flex-1 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900"
+              className="group relative flex-1 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 overflow-hidden"
               aria-haspopup="dialog"
               onClick={() => openModal(p)}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-secondary transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black/10 dark:bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {p.previewImage ? (
+                <>
+                  <img
+                    src={p.previewImage}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    aria-hidden="true"
+                  />
+                  <div className="absolute inset-0 bg-black/20 dark:bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </>
+              ) : (
+                <>
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary via-accent to-secondary transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-black/10 dark:bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </>
+              )}
               <div className="relative flex h-full flex-col items-center justify-center px-5 py-8 text-center">
                 <div className="rounded-2xl border border-white/30 bg-white/45 px-4 py-3.5 shadow-lg backdrop-blur-[6px] transition-all duration-500 group-hover:bg-white/60 dark:border-white/15 dark:bg-white/10 dark:group-hover:bg-white/15">
-                  <h3 className="font-semibold text-title text-gray-900 dark:text-gray-100 tracking-tight">
+                  <h3 className={`font-semibold text-title tracking-tight ${
+                    p.previewImage 
+                      ? 'text-gray-900 dark:text-gray-900' 
+                      : 'text-gray-900 dark:text-gray-100'
+                  }`}>
                     {p.title}
                   </h3>
-                  <p className="mt-1.5 text-small text-gray-700/85 dark:text-gray-200/90">
+                  <p className={`mt-1.5 text-small ${
+                    p.previewImage 
+                      ? 'text-gray-700/85 dark:text-gray-800' 
+                      : 'text-gray-700/85 dark:text-gray-200/90'
+                  }`}>
                     {p.tagline}
                   </p>
                 </div>

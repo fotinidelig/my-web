@@ -5,6 +5,7 @@
     "tagline": "Adversarial Examples in CNNs (implemented with PyTorch)",
     "description": "Explores adversarial attacks and defenses on CNNs; includes training, attacks (CW/FGSM/PGD), TRADES.",
     "image": "https://opengraph.githubassets.com/1/fotinidelig/foolproofCNN",
+    "previewImage": "/projects/proj-foolproofcnn-preview.jpg",
     "stack": ["PyTorch", "Python", "Adversarial ML"],
     "links": { "demo": "https://github.com/fotinidelig/foolproofCNN/blob/main/tutorial.ipynb", "repo": "https://github.com/fotinidelig/foolproofCNN" }
   },
@@ -19,30 +20,13 @@
   },
   {
     "id": "proj-graph-gallery",
-    "title": "Data Viz Gallery",
-    "tagline": "Graph visualizations & examples",
-    "description": "A collection of graph/visualization experiments and examples.",
+    "title": "Data Visualization",
+    "tagline": "Data visualizations using Python",
+    "description": "A collection of visualization experiments using real-world data.",
     "image": "https://opengraph.githubassets.com/1/fotinidelig/graph-gallery",
-    "stack": ["JavaScript", "D3.js", "Data Viz"],
+    "previewImage": "/projects/proj-graph-gallery-small-preview.png",
+    "stack": ["Python", "Matplotlib", "Marimo Notebook"],
     "links": { "demo": "#", "repo": "https://github.com/fotinidelig/graph-gallery" }
-  },
-  {
-    "id": "proj-1",
-    "title": "Interactive Data Viz",
-    "tagline": "Astro + React + D3 prototype",
-    "description": "An elegant visualization exploring data through interactive charts.",
-    "image": "/gallery/sample-1.jpg",
-    "stack": ["Astro", "React", "D3.js"],
-    "links": { "demo": "#", "repo": "#" }
-  },
-  {
-    "id": "proj-2",
-    "title": "Generative Art",
-    "tagline": "Shaders and patterns",
-    "description": "A collection of generative artworks rendered in the browser.",
-    "image": "/gallery/sample-2.jpg",
-    "stack": ["WebGL", "Shaders", "Creative Coding"],
-    "links": { "demo": "#", "repo": "#" }
   }
 ]
 
