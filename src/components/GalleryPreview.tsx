@@ -54,9 +54,12 @@ export default function GalleryPreview({ items }: Props) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-16">
           <div className="mb-6">
           <h2 className="text-3xl font-semibold text-accent-teal dark:text-white">Gallery</h2>
+          <p className="mx-auto mt-2 mb-4 max-w-2xl px-4 text-center text-sm italic text-gray-700 dark:text-gray-300 sm:text-base">
+            A glimpse into the daily scenes and patterns that fuel my sense of style and aesthetic inspiration.
+          </p>
           <a 
             href="/gallery" 
-            className="mt-4 inline-block px-5 py-2.5 rounded-lg bg-gradient-to-r from-accent-rose to-accent-teal text-white text-sm font-medium shadow-lg hover:shadow-xl dark:hover:shadow-xl transition-all duration-300 hover:scale-105"
+            className="mt-2 inline-block text-sm underline text-gray-800 dark:text-gray-100 hover:text-accent-teal"
           >
             View all
           </a>
