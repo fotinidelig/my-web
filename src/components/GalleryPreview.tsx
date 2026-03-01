@@ -1,9 +1,22 @@
 import { useState, useEffect, useRef } from 'react';
 import type { GalleryItem } from '../utils/types';
+import ProtectedImage from './ProtectedImage';
 
 type Props = { items: GalleryItem[] };
 
+// Extract date from filename (gallery-YYYY-MM-DD.jpg) and sort by date descending
+function sortByDateDesc(items: GalleryItem[]): GalleryItem[] {
+  return [...items].sort((a, b) => {
+    // Extract date from filename: /gallery/gallery-YYYY-MM-DD.jpg
+    const dateA = a.src.match(/gallery-(\d{4}-\d{2}-\d{2})/)?.[1] || '';
+    const dateB = b.src.match(/gallery-(\d{4}-\d{2}-\d{2})/)?.[1] || '';
+    // Compare dates (YYYY-MM-DD format sorts lexicographically)
+    return dateB.localeCompare(dateA); // Descending order (newest first)
+  });
+}
+
 export default function GalleryPreview({ items }: Props) {
+  const sortedItems = sortByDateDesc(items);
   const [openImage, setOpenImage] = useState<GalleryItem | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -65,17 +78,21 @@ export default function GalleryPreview({ items }: Props) {
           </a>
         </div>
         <div className="mx-auto max-w-6xl grid gap-4 justify-center justify-items-center grid-cols-[repeat(auto-fit,minmax(110px,1fr))]">
-          {items.slice(0, 8).map((item, idx) => (
+          {sortedItems.slice(0, 8).map((item, idx) => (
             <button
               key={idx}
               onClick={() => openModal(item)}
               className="aspect-square rounded-xl overflow-hidden bg-gray-200 dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 group"
             >
-              <img 
-                src={item.src} 
-                alt={item.alt} 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
-                loading="lazy" 
+              <ProtectedImage
+                src={item.src}
+                alt={item.alt}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading={idx < 4 ? "eager" : "lazy"}
+                watermark={false}
+                overlayProtection={false}
+                disableRightClick={false}
+                disableDrag={false}
               />
             </button>
           ))}
@@ -93,17 +110,23 @@ export default function GalleryPreview({ items }: Props) {
           onClick={closeModal}
         >
           <div className="relative w-full h-full flex flex-col items-center justify-center gallery-modal-content" onClick={(e) => e.stopPropagation()}>
-            <img
+            <ProtectedImage
               src={openImage.src}
               alt={openImage.alt}
               className={`max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl transition-all duration-300 ${
                 modalVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
               }`}
+              loading="eager"
+              watermark={true}
+              overlayProtection={true}
             />
-            <div className={`mt-4 px-6 py-3 bg-black/60 backdrop-blur-sm rounded-lg text-white text-sm transition-all duration-300 ${
+            <div className={`mt-4 px-6 py-3 bg-black/80 backdrop-blur-sm rounded-lg text-white text-sm transition-all duration-300 ${
               modalVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
             }`}>
-              <p>{openImage.alt}</p>
+              <p className="font-medium text-white">{openImage.alt}</p>
+              {openImage.location && openImage.location.trim() && (
+                <p className="mt-1 text-xs text-white font-medium">📍 {openImage.location}</p>
+              )}
             </div>
             <button
               ref={closeButtonRef}

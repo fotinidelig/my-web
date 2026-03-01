@@ -1,14 +1,27 @@
 import { useState, useEffect, useRef } from 'react';
 import type { GalleryItem } from '../utils/types';
+import ProtectedImage from './ProtectedImage';
 
 type Props = { items: GalleryItem[] };
 
+// Extract date from filename (gallery-YYYY-MM-DD.jpg) and sort by date descending
+function sortByDateDesc(items: GalleryItem[]): GalleryItem[] {
+  return [...items].sort((a, b) => {
+    // Extract date from filename: /gallery/gallery-YYYY-MM-DD.jpg
+    const dateA = a.src.match(/gallery-(\d{4}-\d{2}-\d{2})/)?.[1] || '';
+    const dateB = b.src.match(/gallery-(\d{4}-\d{2}-\d{2})/)?.[1] || '';
+    // Compare dates (YYYY-MM-DD format sorts lexicographically)
+    return dateB.localeCompare(dateA); // Descending order (newest first)
+  });
+}
+
 export default function GalleryPage({ items }: Props) {
+  const sortedItems = sortByDateDesc(items);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
-  const openImage = openIndex !== null ? items[openIndex] : null;
+  const openImage = openIndex !== null ? sortedItems[openIndex] : null;
 
   function openModal(idx: number) {
     setOpenIndex(idx);
@@ -25,7 +38,7 @@ export default function GalleryPage({ items }: Props) {
   const showAdjacent = (direction: 1 | -1) => {
     setOpenIndex((current) => {
       if (current === null) return current;
-      const nextIndex = (current + direction + items.length) % items.length;
+      const nextIndex = (current + direction + sortedItems.length) % sortedItems.length;
       return nextIndex;
     });
   };
@@ -76,18 +89,20 @@ export default function GalleryPage({ items }: Props) {
   return (
     <>
       <div className="mx-auto max-w-6xl grid gap-3 justify-center justify-items-center grid-cols-[repeat(auto-fit,minmax(140px,1fr))] sm:grid-cols-[repeat(auto-fit,minmax(160px,1fr))] lg:grid-cols-[repeat(auto-fit,minmax(180px,1fr))]">
-        {items.map((item, idx) => (
+        {sortedItems.map((item, idx) => (
           <button
             key={idx}
             onClick={() => openModal(idx)}
             className="group relative aspect-[4/3] w-full max-w-[200px] overflow-hidden rounded-xl bg-gray-200 dark:bg-gray-800 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
-            aria-label={`View ${item.alt}`}
+            aria-label={`View ${item.alt}${item.location ? ` from ${item.location}` : ''}`}
           >
-            <img
+            <ProtectedImage
               src={item.src}
               alt={item.alt}
               className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-              loading="lazy"
+              loading={idx < 12 ? "eager" : "lazy"}
+              watermark={false}
+              overlayProtection={true}
             />
           </button>
         ))}
@@ -118,12 +133,15 @@ export default function GalleryPage({ items }: Props) {
               </svg>
             </button>
 
-            <img
+            <ProtectedImage
               src={openImage.src}
               alt={openImage.alt}
               className={`relative z-10 max-h-[80vh] w-auto max-w-full object-contain rounded-lg shadow-2xl transition-all duration-300 ${
                 modalVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0'
               }`}
+              loading="eager"
+              watermark={true}
+              overlayProtection={true}
             />
 
             <button
@@ -142,11 +160,14 @@ export default function GalleryPage({ items }: Props) {
             </button>
 
             <div
-              className={`mt-4 px-6 py-3 bg-black/60 backdrop-blur-sm rounded-lg text-white text-sm transition-all duration-300 ${
+              className={`mt-4 px-6 py-3 bg-black/80 backdrop-blur-sm rounded-lg text-white text-sm transition-all duration-300 ${
                 modalVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'
               }`}
             >
-              <p>{openImage.alt}</p>
+              <p className="font-medium text-white">{openImage.alt}</p>
+              {openImage.location && openImage.location.trim() && (
+                <p className="mt-1 text-xs text-white font-medium">📍 {openImage.location}</p>
+              )}
             </div>
             <button
               ref={closeButtonRef}

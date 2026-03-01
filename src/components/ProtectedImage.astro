@@ -1,0 +1,131 @@
+---
+/**
+ * ProtectedImage Astro Component
+ * 
+ * Astro version of protected image for static components.
+ * Implements client-side protection via script injection.
+ */
+
+interface Props {
+  src: string;
+  alt: string;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  watermark?: boolean;
+  watermarkText?: string;
+  copyrightNotice?: string;
+}
+
+const {
+  src,
+  alt,
+  class: className = '',
+  loading = 'lazy',
+  watermark = false,
+  watermarkText,
+  copyrightNotice = '© Fotini Deligiannaki. All rights reserved. Unauthorized use prohibited.',
+} = Astro.props;
+
+// Generate a deterministic ID based on src to avoid hydration mismatch
+// This ensures the same ID on server and client
+const idSuffix = src.replace(/[^a-zA-Z0-9]/g, '').substring(0, 9) || 'img';
+const id = `protected-img-${idSuffix}`;
+const watermarkDisplay = watermarkText || copyrightNotice;
+---
+
+<div
+  class="protected-image-container relative inline-block"
+  data-id={id}
+  style="position: relative; user-select: none;"
+>
+  <!-- Protection overlay -->
+  <div
+    class="absolute inset-0 z-10 cursor-not-allowed"
+    style="pointer-events: none; background: transparent; user-select: none;"
+    aria-hidden="true"
+  />
+
+  <!-- Main image -->
+  <img
+    id={id}
+    src={src}
+    alt={alt}
+    class={`${className} pointer-events-none`}
+    loading={loading}
+    style="user-select: none; -webkit-user-select: none; -webkit-user-drag: none; pointer-events: none;"
+    data-copyright={copyrightNotice}
+    title={copyrightNotice}
+    draggable="false"
+  />
+
+  <!-- Watermark -->
+  {watermark && (
+    <div
+      class="absolute bottom-2 right-2 z-20 px-2 py-1 bg-black/60 text-white text-xs pointer-events-none"
+      style="font-family: monospace; user-select: none;"
+    >
+      {watermarkDisplay}
+    </div>
+  )}
+
+  <!-- Copyright notice container -->
+  <div id={`${id}-notice`} class="hidden fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
+    <div class="bg-black/90 text-white px-6 py-4 rounded-lg shadow-2xl text-sm md:text-base max-w-md mx-4 text-center">
+      <p class="font-semibold mb-2">⚠️ Protected Content</p>
+      <p class="opacity-90">{copyrightNotice}</p>
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ imgId: id, copyright: copyrightNotice }}>
+  (function () {
+    const container = document.querySelector(`[data-id="${imgId}"]`);
+    const img = document.getElementById(imgId);
+    const notice = document.getElementById(`${imgId}-notice`);
+    
+    if (!container || !img) return;
+
+    let noticeTimeout = null;
+
+    const showNotice = () => {
+      if (notice) {
+        notice.classList.remove('hidden');
+        if (noticeTimeout) clearTimeout(noticeTimeout);
+        noticeTimeout = window.setTimeout(() => {
+          if (notice) notice.classList.add('hidden');
+        }, 2000);
+      }
+    };
+
+    // Prevent right-click
+    container.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      showNotice();
+    });
+
+    // Prevent drag
+    img.addEventListener('dragstart', (e) => {
+      e.preventDefault();
+      showNotice();
+    });
+
+    // Prevent selection
+    img.addEventListener('selectstart', (e) => {
+      e.preventDefault();
+    });
+
+    // Prevent keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        showNotice();
+      }
+    });
+
+    // Additional CSS protection
+    img.style.userSelect = 'none';
+    img.style.webkitUserSelect = 'none';
+    img.style.webkitUserDrag = 'none';
+    img.draggable = false;
+  })();
+</script>

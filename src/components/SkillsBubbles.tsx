@@ -41,9 +41,13 @@ function getJitter(idx: number): { dx: number; dy: number } {
 export default function SkillsBubbles({ skills }: Props) {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<Skill['category'] | null>(null);
+  // Start with false to match server-side render, then update on client
   const [isMobile, setIsMobile] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+    
     if (typeof window === 'undefined') return;
 
     const query = window.matchMedia('(max-width: 767px)');
@@ -121,12 +125,17 @@ export default function SkillsBubbles({ skills }: Props) {
         const hoverSize = baseSize * 1.15; // 15% larger on hover
         const originalIdx = skills.findIndex(skill => skill.name === s.name);
         const isHovered = hoveredIdx === originalIdx;
+        // Use deterministic calculations to avoid hydration mismatch
+        // These will be the same on server and client
         const seed = Math.abs(Math.sin((originalIdx + 1) * 0.61803398875));
         const animDurationSec = 4 + seed * 5; // 4s .. 9s
         const animDelaySec = (seed * 2); // 0 .. 2s
         const jitter = getJitter(originalIdx);
         const wrapperSize = hoverSize + 50; // reduced buffer for tighter layout
         const dimmed = selectedCategory !== null && selectedCategory !== s.category;
+        
+        // Only render animated styles after mount to avoid hydration mismatch
+        const shouldAnimate = isMounted;
 
         if (isMobile) {
           return (
@@ -155,12 +164,15 @@ export default function SkillsBubbles({ skills }: Props) {
                 height: isHovered ? hoverSize : baseSize,
                 left: `calc(50% + ${jitter.dx}px)`,
                 top: `calc(50% + ${jitter.dy}px)`,
-                '--scale': isHovered ? 1.15 : 1,
+                '--scale': String(isHovered ? 1.15 : 1) as any,
                 '--jtx': `${jitter.dx}px`,
                 '--jty': `${jitter.dy}px`,
                 transformOrigin: 'center center',
-                animationDelay: `${animDelaySec}s`,
-                animationDuration: `${animDurationSec}s`,
+                // Only apply animation after mount to avoid hydration mismatch
+                ...(shouldAnimate ? {
+                  animationDelay: `${animDelaySec}s`,
+                  animationDuration: `${animDurationSec}s`,
+                } : {}),
               } as React.CSSProperties}
               onMouseEnter={() => setHoveredIdx(originalIdx)}
               onMouseLeave={() => setHoveredIdx(null)}

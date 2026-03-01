@@ -1,3 +1,6 @@
+---
+import ProtectedImage from './ProtectedImage.astro';
+---
 <section id="hero" class="w-full bg-accent-sand/5 text-center md:text-left">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-20 md:py-28">
     <div class="grid gap-10 items-center md:grid-cols-2 md:gap-8">
@@ -16,7 +19,12 @@
       </div>
       <div class="order-1 md:order-2 flex justify-center md:justify-end">
         <div class="w-32 h-32 sm:w-40 sm:h-40 md:w-64 md:h-64 rounded-full overflow-hidden shadow-lg">
-          <img src="/personal-photo-messe-edited_small.jpg" alt="Fotini Deligiannaki" class="w-full h-full object-cover" />
+          <ProtectedImage 
+          src="/personal-photo-messe-edited_small.jpg" 
+          alt="Fotini Deligiannaki" 
+          class="w-full h-full object-cover"
+          watermark={false}
+        />
         </div>
       </div>
     </div>

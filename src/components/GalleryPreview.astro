@@ -1,5 +1,6 @@
 ---
 import gallery from "../data/gallery.json";
+import ProtectedImage from "./ProtectedImage.astro";
 ---
 
 <section id="gallery" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-16 text-center">
@@ -13,7 +14,13 @@ import gallery from "../data/gallery.json";
   <div class="mx-auto max-w-6xl grid gap-3 justify-center justify-items-center grid-cols-[repeat(auto-fit,minmax(160px,1fr))]">
     {gallery.slice(0, 8).map((item) => (
       <a href="/gallery" class="aspect-square rounded-md overflow-hidden bg-gray-200 dark:bg-gray-800">
-        <img src={item.src} alt={item.alt} class="w-full h-full object-cover" loading="lazy" />
+        <ProtectedImage 
+          src={item.src} 
+          alt={item.alt} 
+          class="w-full h-full object-cover" 
+          loading="lazy"
+          watermark={false}
+        />
       </a>
     ))}
   </div>

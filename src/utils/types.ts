@@ -19,6 +19,7 @@ export type Skill = {
 export type GalleryItem = {
   src: string;
   alt: string;
+  location?: string; // Optional location metadata to help distinguish images
 };
 
 export type TimelineItem = {
