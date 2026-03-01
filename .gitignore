@@ -9,3 +9,9 @@ dist
 
 
 
+
+# Protection documentation (excluded from public repo)
+IMAGE_PROTECTION_GUIDE.md
+IMAGE_OPTIMIZATION_NOTES.md
+OPTIMIZATION_ANALYSIS.md
+OPTIMIZATION_SUMMARY.md
