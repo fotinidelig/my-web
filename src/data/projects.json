@@ -2,7 +2,7 @@
   {
     "id": "proj-foolproofcnn",
     "title": "Adversarial Attacks Toolkit",
-    "tagline": "Adversarial Examples in CNNs (implemented with PyTorch)",
+    "tagline": "Adversarial Examples in CNNs implemented with PyTorch",
     "description": "Explores adversarial attacks and defenses on CNNs; includes training, attacks (CW/FGSM/PGD), TRADES.",
     "image": "https://opengraph.githubassets.com/1/fotinidelig/foolproofCNN",
     "previewImage": "/projects/proj-foolproofcnn-preview.jpg",
@@ -12,7 +12,7 @@
   {
     "id": "proj-kalman",
     "title": "C++ Kalman Filter Package",
-    "tagline": "Kalman Filter in ROS (C++)",
+    "tagline": "Kalman Filter in ROS implemented in C++",
     "description": "ROS package implementing a Kalman filter; C++ with CMake, designed for robotics pipelines.",
     "image": "https://opengraph.githubassets.com/1/fotinidelig/kalman_filter_pkg",
     "stack": ["C++", "ROS", "CMake"],
@@ -20,13 +20,23 @@
   },
   {
     "id": "proj-graph-gallery",
-    "title": "Data Visualization",
+    "title": "Data Visualization Gallery",
     "tagline": "Data visualizations using Python",
     "description": "A collection of visualization experiments using real-world data.",
     "image": "https://opengraph.githubassets.com/1/fotinidelig/graph-gallery",
     "previewImage": "/projects/proj-graph-gallery-small-preview.png",
     "stack": ["Python", "Matplotlib", "Marimo Notebook"],
     "links": { "demo": "#", "repo": "https://github.com/fotinidelig/graph-gallery" }
+  },
+  {
+    "id": "proj-animations",
+    "title": "Animated Visualization Demos",
+    "tagline": "Simple animations based on various datasets",
+    "description": "Code-based data visualization animations built with Python and Matplotlib, animating temperature patterns over Greece, and other datasets.",
+    "image": "https://opengraph.githubassets.com/1/fotinidelig/graph-gallery/src/temperature-viz",
+    "previewImage": "/projects/proj-data-animations.png",
+    "stack": ["Python", "Matplotlib", "Pandas"],
+    "links": { "demo": "/animations", "repo": "https://github.com/fotinidelig/graph-gallery" }
   }
 ]
 

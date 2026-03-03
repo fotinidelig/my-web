@@ -1,0 +1,20 @@
+[
+  {
+    "id": "temperatures-greece",
+    "title": "Temperatures in Greece",
+    "tagline": "Animated polar view of yearly temperatures over Greece",
+    "description": "An animated exploration of yearly temperature patterns over Greece, inspired by a polar coordinates visualization and focused on highlighting seasonal extremes.",
+    "about": [
+      "The animation sweeps through days of the year in polar coordinates, using radius and colour to encode temperature.",
+      "Built with Python and Matplotlib, the frames are rendered from daily temperature data, then stitched together into a smooth loop in .gif format. The design aims for a creative but nevertheless accurate feel."
+    ],
+    "gifSrc": "/animations/temperatures-in-greece/animation.gif",
+    "staticSrc": "/animations/temperatures-in-greece/inspiration.png",
+    "repo": "https://github.com/fotinidelig/graph-gallery/tree/main/src/temperature-viz",
+    "annotations": {
+      "primary": "polar coordinates",
+      "secondary": "extreme values"
+    }
+  }
+]
+
