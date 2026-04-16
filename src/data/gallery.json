@@ -1,5 +1,4 @@
 [
-  { "src": "/gallery/gallery-2020-04-09.jpg", "alt": "April 2020", "location": "Athens" },
   { "src": "/gallery/gallery-2020-05-01.jpg", "alt": "May 2020", "location": "Parnitha" },
   { "src": "/gallery/gallery-2021-05-22.jpg", "alt": "May 2021", "location": "Frankfurt" },
   { "src": "/gallery/gallery-2022-02-16.jpg", "alt": "February 2022", "location": "Athens" },
@@ -19,5 +18,7 @@
   { "src": "/gallery/gallery-2025-12-25.jpg", "alt": "December 2025", "location": "Pavliani" },
   { "src": "/gallery/gallery-2026-01-10.jpg", "alt": "January 2026", "location": "Athens" },
   { "src": "/gallery/gallery-2026-02-05.jpg", "alt": "February 2026", "location": "London" },
-  { "src": "/gallery/gallery-2026-03-01.jpg", "alt": "November 2025", "location": "Toulouse" }
+  { "src": "/gallery/gallery-2026-03-01.jpg", "alt": "November 2025", "location": "Toulouse" },
+  { "src": "/gallery/gallery-2026-03-28.jpg", "alt": "March 2026", "location": "Bonn" },
+  { "src": "/gallery/gallery-2026-04-02.jpg", "alt": "April 2026", "location": "Bonn" }
 ]

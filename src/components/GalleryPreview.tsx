@@ -85,9 +85,9 @@ export default function GalleryPreview({ items }: Props) {
               className="aspect-square rounded-xl overflow-hidden bg-gray-200 dark:bg-gray-800 shadow-md hover:shadow-lg transition-shadow duration-300 group"
             >
               <ProtectedImage
-                src={item.src}
-                alt={item.alt}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                src={item.src} 
+                alt={item.alt} 
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
                 loading={idx < 4 ? "eager" : "lazy"}
                 watermark={false}
                 overlayProtection={false}

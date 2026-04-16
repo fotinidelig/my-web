@@ -17,6 +17,8 @@ function getCategoryClasses(category?: Skill['category']): string {
       return 'bg-accent-rose/35 text-accent-rose dark:bg-accent-rose/30 dark:text-accent-rose';
     case 'robotics':
       return 'bg-amber-400/40 text-amber-700 dark:bg-amber-400/35 dark:text-amber-300';
+    case 'data-viz':
+      return 'bg-purple-400/40 text-purple-700 dark:bg-purple-400/35 dark:text-purple-300';
     default:
       return 'bg-white/80 dark:bg-gray-800/70 text-gray-800 dark:text-gray-100';
   }
@@ -80,6 +82,7 @@ export default function SkillsBubbles({ skills }: Props) {
     { name: 'Tools', category: 'tool' as Skill['category'] },
     { name: 'Web', category: 'web' as Skill['category'] },
     { name: 'Robotics', category: 'robotics' as Skill['category'] },
+    { name: 'Data Viz & Design', category: 'data-viz' as Skill['category'] },
   ].filter(cat => skills.some(s => s.category === cat.category));
 
   // Shuffle skills array deterministically to mix categories
@@ -170,8 +173,8 @@ export default function SkillsBubbles({ skills }: Props) {
                 transformOrigin: 'center center',
                 // Only apply animation after mount to avoid hydration mismatch
                 ...(shouldAnimate ? {
-                  animationDelay: `${animDelaySec}s`,
-                  animationDuration: `${animDurationSec}s`,
+                animationDelay: `${animDelaySec}s`,
+                animationDuration: `${animDurationSec}s`,
                 } : {}),
               } as React.CSSProperties}
               onMouseEnter={() => setHoveredIdx(originalIdx)}

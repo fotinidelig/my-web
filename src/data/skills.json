@@ -11,7 +11,12 @@
   { "name": "Docker", "level": 75, "category": "tool", "years": 3 },
   { "name": "LaTeX", "level": 70, "category": "tool", "years": 5 },
   { "name": "Flask", "level": 65, "category": "web", "years": 2 },
-  { "name": "ROS", "level": 70, "category": "robotics", "years": 3 }
+  { "name": "ROS", "level": 70, "category": "robotics", "years": 3 },
+  { "name": "MatplotLib", "level": 80, "category": "data-viz", "years": 2 },
+  { "name": "Affinity Designer", "level": 55, "category": "data-viz", "years": 0.5 },
+  { "name": "D3.js", "level": 40, "category": "data-viz", "years": 0.2 },
+  { "name": "CSS", "level": 60, "category": "data-viz", "years": 1 }
+
 ]
 
 

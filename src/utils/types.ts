@@ -12,7 +12,7 @@ export type Project = {
 export type Skill = {
   name: string;
   level: number; // 0-100
-  category?: 'programming' | 'ai' | 'cv' | 'tool' | 'web' | 'robotics';
+  category?: 'programming' | 'ai' | 'cv' | 'tool' | 'web' | 'robotics' | 'data-viz';
   years?: number;
 };
 
