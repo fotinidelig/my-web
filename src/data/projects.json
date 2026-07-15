@@ -1,5 +1,35 @@
 [
   {
+    "id": "proj-data-viz-portfolio",
+    "title": "Data Visualization",
+    "tagline": "My data visualization portfolio",
+    "description": "Explore my data visualization projects (from Python to React",
+    "image": "https://opengraph.githubassets.com/1/fotinidelig/d3-intro-page",
+    "previewImage": "/projects/proj-data-viz-portfolio.png",
+    "stack": ["React", "D3.js"],
+    "links": { "demo": "https://fotinidelig.github.io/d3-intro-page/", "repo": "https://github.com/fotinidelig/d3-intro-page" }
+  },
+  {
+    "id": "proj-graph-gallery",
+    "title": "Data Viz Gallery",
+    "tagline": "Data visualizations using Python and Matplotlib",
+    "description": "A collection of visualization experiments using real-world data.",
+    "image": "https://opengraph.githubassets.com/1/fotinidelig/graph-gallery",
+    "previewImage": "/projects/proj-graph-gallery-small-preview.png",
+    "stack": ["Python", "Matplotlib", "Marimo Notebook"],
+    "links": { "demo": "#", "repo": "https://github.com/fotinidelig/graph-gallery" }
+  },
+  {
+    "id": "proj-animations",
+    "title": "Python Animation Demos",
+    "tagline": "Simple animations based on various datasets",
+    "description": "Code-based data visualization animations built with Python and Matplotlib, animating temperature patterns over Greece, and other datasets.",
+    "image": "https://opengraph.githubassets.com/1/fotinidelig/graph-gallery/src/temperature-viz",
+    "previewImage": "/projects/proj-data-animations.png",
+    "stack": ["Python", "Matplotlib", "Pandas"],
+    "links": { "demo": "/animations", "repo": "https://github.com/fotinidelig/graph-gallery" }
+  },
+  {
     "id": "proj-foolproofcnn",
     "title": "Adversarial Attacks Toolkit",
     "tagline": "Adversarial Examples in CNNs implemented with PyTorch",
@@ -17,26 +47,6 @@
     "image": "https://opengraph.githubassets.com/1/fotinidelig/kalman_filter_pkg",
     "stack": ["C++", "ROS", "CMake"],
     "links": { "demo": "#", "repo": "https://github.com/fotinidelig/kalman_filter_pkg" }
-  },
-  {
-    "id": "proj-graph-gallery",
-    "title": "Data Visualization Gallery",
-    "tagline": "Data visualizations using Python",
-    "description": "A collection of visualization experiments using real-world data.",
-    "image": "https://opengraph.githubassets.com/1/fotinidelig/graph-gallery",
-    "previewImage": "/projects/proj-graph-gallery-small-preview.png",
-    "stack": ["Python", "Matplotlib", "Marimo Notebook"],
-    "links": { "demo": "#", "repo": "https://github.com/fotinidelig/graph-gallery" }
-  },
-  {
-    "id": "proj-animations",
-    "title": "Animated Visualization Demos",
-    "tagline": "Simple animations based on various datasets",
-    "description": "Code-based data visualization animations built with Python and Matplotlib, animating temperature patterns over Greece, and other datasets.",
-    "image": "https://opengraph.githubassets.com/1/fotinidelig/graph-gallery/src/temperature-viz",
-    "previewImage": "/projects/proj-data-animations.png",
-    "stack": ["Python", "Matplotlib", "Pandas"],
-    "links": { "demo": "/animations", "repo": "https://github.com/fotinidelig/graph-gallery" }
   }
 ]
 
