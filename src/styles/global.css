@@ -9,6 +9,9 @@ html {
 }
 
 :root {
+  /* Page background — matches body (accent-sand/5 on white) */
+  --page-bg: 254, 251, 249;
+
   /* Gradient reserved for future decorative elements */
   --bg-gradient: linear-gradient(
     to right top,
@@ -142,39 +145,42 @@ details summary::-webkit-details-marker {
   transform: translate(-50%, -50%) scale(1.15);
 }
 
-/* Navbar gradient background */
+/* Navbar gradient background — horizontal color + vertical fade to page bg */
 .navbar-gradient {
-  background: linear-gradient(to right, 
-    rgba(197, 93, 129, 0.85),
-    rgba(202, 106, 95, 0.85),
-    rgba(188, 127, 73, 0.85),
-    rgba(160, 148, 73, 0.85),
-    rgba(125, 165, 98, 0.85),
-    rgba(124, 170, 107, 0.85),
-    rgba(122, 176, 116, 0.85),
-    rgba(121, 181, 126, 0.85),
-    rgba(154, 179, 111, 0.85),
-    rgba(185, 175, 106, 0.85),
-    rgba(212, 170, 110, 0.85),
-    rgba(234, 165, 125, 0.85)
-  );
+  --navbar-color-opacity: 0.45;
+
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(var(--page-bg), 0.1) 20%,
+      rgba(var(--page-bg), 0.4) 55%,
+      rgba(var(--page-bg), 0.7) 85%,
+      rgba(var(--page-bg), 1) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(197, 93, 129, var(--navbar-color-opacity)),
+      rgba(202, 106, 95, var(--navbar-color-opacity)),
+      rgba(188, 127, 73, var(--navbar-color-opacity)),
+      rgba(160, 148, 73, var(--navbar-color-opacity)),
+      rgba(125, 165, 98, var(--navbar-color-opacity)),
+      rgba(124, 170, 107, var(--navbar-color-opacity)),
+      rgba(122, 176, 116, var(--navbar-color-opacity)),
+      rgba(121, 181, 126, var(--navbar-color-opacity)),
+      rgba(154, 179, 111, var(--navbar-color-opacity)),
+      rgba(185, 175, 106, var(--navbar-color-opacity)),
+      rgba(212, 170, 110, var(--navbar-color-opacity)),
+      rgba(234, 165, 125, var(--navbar-color-opacity))
+    );
+}
+
+.dark {
+  --page-bg: 29, 29, 29;
 }
 
 .dark .navbar-gradient {
-  background: linear-gradient(to right, 
-    rgba(197, 93, 129, 0.75),
-    rgba(202, 106, 95, 0.75),
-    rgba(188, 127, 73, 0.75),
-    rgba(160, 148, 73, 0.75),
-    rgba(125, 165, 98, 0.75),
-    rgba(124, 170, 107, 0.75),
-    rgba(122, 176, 116, 0.75),
-    rgba(121, 181, 126, 0.75),
-    rgba(154, 179, 111, 0.75),
-    rgba(185, 175, 106, 0.75),
-    rgba(212, 170, 110, 0.75),
-    rgba(234, 165, 125, 0.75)
-  );
+  --navbar-color-opacity: 0.35;
 }
 
 /* Copyright notice fade-in animation */
