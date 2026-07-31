@@ -29,15 +29,20 @@ const avatar = {
         </div>
       </div>
       <div class="order-1 md:order-2 flex justify-center md:justify-end">
-        <!-- Portrait frame: ~3:4 rounded rectangle. Change sizes / rounded-* here if needed. -->
-        <div class="h-44 w-36 overflow-hidden rounded-2xl shadow-lg sm:h-56 sm:w-44 md:h-[26rem] md:w-80">
-          <ProtectedImage
-            src={avatar.src}
-            alt="Fotini Deligiannaki"
-            class="h-full w-full object-cover"
-            style={`object-position: ${avatar.position}; transform: scale(${avatar.zoom}); transform-origin: center;`}
-            watermark={false}
-          />
+        <div class="relative h-44 w-36 sm:h-56 sm:w-44 md:h-[26rem] md:w-80">
+          <div
+            class="absolute inset-0 -translate-x-5 translate-y-5 rounded-2xl bg-accent-rose/40 dark:bg-accent-rose/40 shadow-2xl"
+            aria-hidden="true"
+          ></div>
+          <div class="relative z-10 h-full w-full overflow-hidden rounded-2xl shadow-lg sm:h-56 sm:w-44 md:h-[26rem] md:w-80">
+            <ProtectedImage
+              src={avatar.src}
+              alt="Fotini Deligiannaki"
+              class="h-full w-full object-cover"
+              style={`object-position: ${avatar.position}; transform: scale(${avatar.zoom}); transform-origin: center;`}
+              watermark={false}
+            />
+          </div>
         </div>
       </div>
     </div>
