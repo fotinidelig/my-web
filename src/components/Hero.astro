@@ -1,5 +1,16 @@
 ---
 import ProtectedImage from './ProtectedImage.astro';
+
+/**
+ * Avatar crop controls — tweak these to reframe the photo without editing CSS elsewhere.
+ * - position: CSS object-position (horizontal% vertical%). Lower vertical % = bias toward the face.
+ * - zoom: 1 = natural cover crop; >1 zooms in; <1 zooms out (may letterbox depending on frame).
+ */
+const avatar = {
+  src: '/profile_avatar.jpg',
+  position: '50% 60%',
+  zoom: 1.01,
+};
 ---
 <section id="hero" class="w-full bg-accent-sand/5 text-center md:text-left">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-20 md:py-28">
@@ -18,20 +29,17 @@ import ProtectedImage from './ProtectedImage.astro';
         </div>
       </div>
       <div class="order-1 md:order-2 flex justify-center md:justify-end">
-        <div class="w-32 h-32 sm:w-40 sm:h-40 md:w-64 md:h-64 rounded-full overflow-hidden shadow-lg">
-          <ProtectedImage 
-          src="/personal-photo-messe-edited_big.jpg" 
-          alt="Fotini Deligiannaki" 
-          class="w-full h-full object-cover"
-          style="object-position: center 30%;"
-          watermark={false}
-        />
+        <!-- Portrait frame: ~3:4 rounded rectangle. Change sizes / rounded-* here if needed. -->
+        <div class="h-44 w-36 overflow-hidden rounded-2xl shadow-lg sm:h-56 sm:w-44 md:h-[26rem] md:w-80">
+          <ProtectedImage
+            src={avatar.src}
+            alt="Fotini Deligiannaki"
+            class="h-full w-full object-cover"
+            style={`object-position: ${avatar.position}; transform: scale(${avatar.zoom}); transform-origin: center;`}
+            watermark={false}
+          />
         </div>
       </div>
     </div>
   </div>
 </section>
-
-
-
-

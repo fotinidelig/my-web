@@ -10,6 +10,7 @@ interface Props {
   src: string;
   alt: string;
   class?: string;
+  style?: string;
   loading?: 'lazy' | 'eager';
   watermark?: boolean;
   watermarkText?: string;
@@ -20,6 +21,7 @@ const {
   src,
   alt,
   class: className = '',
+  style: styleProp = '',
   loading = 'lazy',
   watermark = false,
   watermarkText,
@@ -34,7 +36,7 @@ const watermarkDisplay = watermarkText || copyrightNotice;
 ---
 
 <div
-  class="protected-image-container relative inline-block"
+  class="protected-image-container relative block h-full w-full"
   data-id={id}
   style="position: relative; user-select: none;"
 >
@@ -52,7 +54,7 @@ const watermarkDisplay = watermarkText || copyrightNotice;
     alt={alt}
     class={`${className} pointer-events-none`}
     loading={loading}
-    style="user-select: none; -webkit-user-select: none; -webkit-user-drag: none; pointer-events: none;"
+    style={`user-select: none; -webkit-user-select: none; -webkit-user-drag: none; pointer-events: none; ${styleProp}`}
     data-copyright={copyrightNotice}
     title={copyrightNotice}
     draggable="false"
