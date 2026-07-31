@@ -9,10 +9,20 @@ export type Project = {
   links?: { demo?: string; repo?: string };
 };
 
+export type SkillCategory =
+  | 'programming'
+  | 'ai'
+  | 'cv'
+  | 'tool'
+  | 'web'
+  | 'robotics'
+  | 'data-viz'
+  | 'design';
+
 export type Skill = {
   name: string;
-  level: number; // 0-100
-  category?: 'programming' | 'ai' | 'cv' | 'tool' | 'web' | 'robotics' | 'data-viz';
+  level: number;
+  category?: SkillCategory[];
   years?: number;
 };
 

@@ -1,22 +1,22 @@
 [
-  { "name": "Python", "level": 88, "category": "programming", "years": 6 },
-  { "name": "C++", "level": 75, "category": "programming", "years": 4 },
-  { "name": "Bash/Shell", "level": 70, "category": "programming", "years": 5 },
-  { "name": "PyTorch", "level": 80, "category": "ai", "years": 3 },
-  { "name": "HuggingFace", "level": 70, "category": "ai", "years": 2 },
-  { "name": "Machine/Deep Learning", "level": 75, "category": "ai", "years": 4 },
-  { "name": "OpenCV", "level": 78, "category": "cv", "years": 4 },
-  { "name": "YOLO", "level": 70, "category": "cv", "years": 2 },
-  { "name": "Git", "level": 85, "category": "tool", "years": 6 },
-  { "name": "Docker", "level": 75, "category": "tool", "years": 3 },
-  { "name": "LaTeX", "level": 70, "category": "tool", "years": 5 },
-  { "name": "Flask", "level": 65, "category": "web", "years": 2 },
-  { "name": "ROS", "level": 70, "category": "robotics", "years": 3 },
-  { "name": "MatplotLib", "level": 80, "category": "data-viz", "years": 2 },
-  { "name": "Affinity Designer", "level": 55, "category": "data-viz", "years": 0.5 },
-  { "name": "D3.js", "level": 40, "category": "data-viz", "years": 0.2 },
-  { "name": "CSS", "level": 60, "category": "data-viz", "years": 1 }
-
+  { "name": "Python", "level": 88, "category": ["programming"], "years": 6 },
+  { "name": "C++", "level": 75, "category": ["programming"], "years": 4 },
+  { "name": "Bash/Shell", "level": 70, "category": ["programming"], "years": 5 },
+  { "name": "PyTorch", "level": 80, "category": ["ai"], "years": 3 },
+  { "name": "HuggingFace", "level": 70, "category": ["ai"], "years": 2 },
+  { "name": "Machine/Deep Learning", "level": 75, "category": ["ai"], "years": 4 },
+  { "name": "OpenCV", "level": 78, "category": ["cv"], "years": 4 },
+  { "name": "YOLO", "level": 70, "category": ["cv"], "years": 2 },
+  { "name": "Git", "level": 85, "category": ["tool"], "years": 6 },
+  { "name": "Docker", "level": 75, "category": ["tool"], "years": 3 },
+  { "name": "LaTeX", "level": 70, "category": ["tool"], "years": 5 },
+  { "name": "Flask", "level": 65, "category": ["web"], "years": 2 },
+  { "name": "ROS", "level": 70, "category": ["robotics"], "years": 3 },
+  { "name": "MatplotLib", "level": 80, "category": ["data-viz"], "years": 3 },
+  { "name": "Affinity Designer", "level": 55, "category": ["data-viz"], "years": 1 },
+  { "name": "D3.js", "level": 40, "category": ["data-viz", "web"], "years": 0.5 },
+  { "name": "React", "level": 40, "category": ["web"], "years": 0.5 },
+  { "name": "CSS", "level": 60, "category": ["data-viz", "web"], "years": 1 }
 ]
 
 

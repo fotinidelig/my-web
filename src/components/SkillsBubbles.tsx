@@ -1,9 +1,14 @@
 import { useState, useEffect } from 'react';
-import type { Skill } from '../utils/types';
+import type { Skill, SkillCategory } from '../utils/types';
+
 
 type Props = { skills: Skill[] };
 
-function getCategoryClasses(category?: Skill['category']): string {
+function getCategories(skill: Skill): SkillCategory[] {
+  return skill.category ?? [];
+}
+
+function getCategoryClasses(category?: SkillCategory): string {
   switch (category) {
     case 'programming':
       return 'bg-accent-teal/40 text-teal-800 dark:bg-accent-teal/35 dark:text-teal-200';
@@ -19,10 +24,15 @@ function getCategoryClasses(category?: Skill['category']): string {
       return 'bg-amber-400/40 text-amber-700 dark:bg-amber-400/35 dark:text-amber-300';
     case 'data-viz':
       return 'bg-purple-400/40 text-purple-700 dark:bg-purple-400/35 dark:text-purple-300';
+    case 'design':
+      return 'bg-pink-400/40 text-pink-700 dark:bg-pink-400/35 dark:text-pink-300';
     default:
       return 'bg-white/80 dark:bg-gray-800/70 text-gray-800 dark:text-gray-100';
   }
 }
+
+/** Extra radius (px) per secondary category ring around a bubble. */
+const CATEGORY_RING_STEP = 7;
 
 // Jitter utility: more random offsets for less structured layout
 function getJitter(idx: number): { dx: number; dy: number } {
@@ -42,7 +52,7 @@ function getJitter(idx: number): { dx: number; dy: number } {
 
 export default function SkillsBubbles({ skills }: Props) {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
-  const [selectedCategory, setSelectedCategory] = useState<Skill['category'] | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<SkillCategory | null>(null);
   // Start with false to match server-side render, then update on client
   const [isMobile, setIsMobile] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -75,15 +85,19 @@ export default function SkillsBubbles({ skills }: Props) {
   }, []);
 
   // Get unique categories from skills
-  const categories: Array<{ name: string; category: Skill['category'] }> = [
-    { name: 'Programming', category: 'programming' as Skill['category'] },
-    { name: 'ML/AI', category: 'ai' as Skill['category'] },
-    { name: 'Computer Vision', category: 'cv' as Skill['category'] },
-    { name: 'Tools', category: 'tool' as Skill['category'] },
-    { name: 'Web', category: 'web' as Skill['category'] },
-    { name: 'Robotics', category: 'robotics' as Skill['category'] },
-    { name: 'Data Viz & Design', category: 'data-viz' as Skill['category'] },
-  ].filter(cat => skills.some(s => s.category === cat.category));
+  const categories: Array<{ name: string; category: SkillCategory }> = (
+    [
+      { name: 'Programming', category: 'programming' },
+      { name: 'ML/AI', category: 'ai' },
+      { name: 'Computer Vision', category: 'cv' },
+      { name: 'Tools', category: 'tool' },
+      { name: 'Web', category: 'web' },
+      { name: 'Robotics', category: 'robotics' },
+      { name: 'Data Viz', category: 'data-viz' },
+      { name: 'Design', category: 'design' },
+    ] as const
+  ).filter((cat) => skills.some((s) => getCategories(s).includes(cat.category)));
+
 
   // Shuffle skills array deterministically to mix categories
   const shuffledSkills = [...skills].sort((a, b) => {
@@ -92,12 +106,8 @@ export default function SkillsBubbles({ skills }: Props) {
     return (hashA % 100) - (hashB % 100);
   });
 
-  const handleCategoryClick = (category: Skill['category']) => {
-    if (selectedCategory === category) {
-      setSelectedCategory(null); // Deselect if clicking the same category
-    } else {
-      setSelectedCategory(category);
-    }
+  const handleCategoryClick = (category: SkillCategory) => {
+    setSelectedCategory((prev) => (prev === category ? null : category));
   };
 
   return (
@@ -122,10 +132,10 @@ export default function SkillsBubbles({ skills }: Props) {
       <div className="flex flex-wrap justify-center gap-1 md:gap-2">
       {shuffledSkills.map((s) => {
         const minSize = 65; // px
-        const maxSize = 150; // px
+        const maxSize = 130; // px
         const clamped = Math.max(0, Math.min(100, s.level));
         const baseSize = Math.round(minSize + (maxSize - minSize) * (clamped / 100));
-        const hoverSize = baseSize * 1.15; // 15% larger on hover
+        const hoverSize = baseSize * 1.1; // 15% larger on hover
         const originalIdx = skills.findIndex(skill => skill.name === s.name);
         const isHovered = hoveredIdx === originalIdx;
         // Use deterministic calculations to avoid hydration mismatch
@@ -134,9 +144,18 @@ export default function SkillsBubbles({ skills }: Props) {
         const animDurationSec = 4 + seed * 5; // 4s .. 9s
         const animDelaySec = (seed * 2); // 0 .. 2s
         const jitter = getJitter(originalIdx);
-        const wrapperSize = hoverSize + 50; // reduced buffer for tighter layout
-        const dimmed = selectedCategory !== null && selectedCategory !== s.category;
-        
+        const skillCategories = getCategories(s);
+        const primaryCategory = skillCategories[0];
+        const secondaryCategories = skillCategories.slice(1);
+        const wrapperSize =
+          hoverSize + 30 + secondaryCategories.length * CATEGORY_RING_STEP * 2;
+        const dimmed =
+          selectedCategory !== null && !skillCategories.includes(selectedCategory);
+        const categoryLabel = skillCategories.join(', ');
+        const yearsLabel = s.years
+          ? `${s.years} ${s.years === 1 ? 'year' : 'years'}`
+          : '';
+
         // Only render animated styles after mount to avoid hydration mismatch
         const shouldAnimate = isMounted;
 
@@ -144,10 +163,19 @@ export default function SkillsBubbles({ skills }: Props) {
           return (
             <span
               key={s.name}
-              className={`inline-flex items-center justify-center rounded-full px-3.5 py-1.5 text-[0.9rem] font-semibold shadow-lg shadow-secondary/20 backdrop-blur-sm transition-transform duration-500 ${getCategoryClasses(s.category)} ${dimmed ? 'opacity-45 grayscale' : ''}`}
+              className={`relative inline-flex items-center justify-center rounded-full px-3.5 py-1.5 text-[0.9rem] font-semibold shadow-lg shadow-secondary/20 backdrop-blur-sm transition-transform duration-500 ${getCategoryClasses(primaryCategory)} ${dimmed ? 'opacity-45 grayscale' : ''}`}
               style={{ transform: `translateY(${Math.sin((originalIdx + 1) * 1.3) * 4}px)` }}
             >
-              {s.name}
+              {/* Secondary category rings (mobile) */}
+              {secondaryCategories.map((cat, i) => (
+                <span
+                  key={cat}
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute rounded-full ${getCategoryClasses(cat)}`}
+                  style={{ inset: `-${(i + 1) * 4}px`, zIndex: -1 }}
+                />
+              ))}
+              <span className="relative z-10">{s.name}</span>
             </span>
           );
         }
@@ -158,8 +186,9 @@ export default function SkillsBubbles({ skills }: Props) {
             className="relative inline-block overflow-visible"
             style={{ width: wrapperSize, height: wrapperSize }}
           >
+            {/* Floating shell: rings + primary fill stay aligned while animating */}
             <span
-              className={`absolute inline-flex items-center justify-center rounded-full shadow-xl backdrop-blur-sm animate-float-soft transition-all duration-500 ease-out z-10 hover:z-20 ${getCategoryClasses(s.category)} ${
+              className={`absolute inline-flex items-center justify-center rounded-full shadow-xl animate-float-soft transition-all duration-500 ease-out z-10 hover:z-20 ${getCategoryClasses(primaryCategory)} ${
                 dimmed ? 'grayscale opacity-40' : ''
               }`}
               style={{
@@ -167,27 +196,48 @@ export default function SkillsBubbles({ skills }: Props) {
                 height: isHovered ? hoverSize : baseSize,
                 left: `calc(50% + ${jitter.dx}px)`,
                 top: `calc(50% + ${jitter.dy}px)`,
+                // Keep category text color from classes; fill lives on the inner layer
+                backgroundColor: 'transparent',
                 '--scale': String(isHovered ? 1.15 : 1) as any,
                 '--jtx': `${jitter.dx}px`,
                 '--jty': `${jitter.dy}px`,
                 transformOrigin: 'center center',
-                // Only apply animation after mount to avoid hydration mismatch
                 ...(shouldAnimate ? {
-                animationDelay: `${animDelaySec}s`,
-                animationDuration: `${animDurationSec}s`,
+                  animationDelay: `${animDelaySec}s`,
+                  animationDuration: `${animDurationSec}s`,
                 } : {}),
               } as React.CSSProperties}
               onMouseEnter={() => setHoveredIdx(originalIdx)}
               onMouseLeave={() => setHoveredIdx(null)}
-              aria-label={`${s.name}${s.category ? ` • ${s.category}` : ''}`}
+              aria-label={`${s.name}${categoryLabel ? ` • ${categoryLabel}` : ''}`}
             >
-              <div className="text-center px-2">
+              {/* Secondary rings sit behind the primary fill (negative inset = larger circle) */}
+              {secondaryCategories.map((cat, i) => (
+                <span
+                  key={cat}
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute rounded-full ${getCategoryClasses(cat)}`}
+                  style={{
+                    inset: `-${(i + 1) * CATEGORY_RING_STEP}px`,
+                    zIndex: 0,
+                  }}
+                />
+              ))}
+              {/* Primary category fill */}
+              <span
+                aria-hidden="true"
+                className={`absolute inset-0 rounded-full backdrop-blur-sm ${getCategoryClasses(primaryCategory)}`}
+                style={{ zIndex: 1 }}
+              />
+              <div className="relative z-10 text-center px-2">
                 <span className="block text-sm md:text-base font-medium select-none leading-tight">
                   {s.name}
                 </span>
                 {isHovered && (
                   <span className="block text-xs mt-1 opacity-90">
-                    {s.category ? s.category : ''}{s.category && s.years ? ' • ' : ''}{s.years ? `${s.years} ${s.years === 1 ? 'year' : 'years'}` : ''}
+                    {categoryLabel}
+                    {categoryLabel && yearsLabel ? ' • ' : ''}
+                    {yearsLabel}
                   </span>
                 )}
               </div>
